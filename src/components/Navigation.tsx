@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { Menu } from 'lucide-react';
 import logo from '@/assets/logo-playfarm.png';
 
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,12 +48,48 @@ const Navigation = () => {
           </Button>
         </div>
 
-        <Button 
-          size="sm" 
-          className="md:hidden bg-primary hover:bg-primary/90 text-primary-foreground"
-        >
-          Menu
-        </Button>
+        <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+          <SheetTrigger asChild>
+            <Button 
+              size="sm" 
+              className="md:hidden bg-primary hover:bg-primary/90 text-primary-foreground"
+            >
+              <Menu className="h-5 w-5" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="w-[300px]">
+            <div className="flex flex-col gap-6 mt-8">
+              <a 
+                href="#features" 
+                className="text-foreground/80 hover:text-primary transition-colors text-lg"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Features
+              </a>
+              <a 
+                href="#gallery" 
+                className="text-foreground/80 hover:text-primary transition-colors text-lg"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Gallery
+              </a>
+              <a 
+                href="#subscribe" 
+                className="text-foreground/80 hover:text-primary transition-colors text-lg"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                News
+              </a>
+              <Button 
+                size="sm" 
+                className="bg-primary hover:bg-primary/90 text-primary-foreground w-full"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Play Now
+              </Button>
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </nav>
   );
