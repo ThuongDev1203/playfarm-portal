@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import logo from '@/assets/logo-playfarm.png';
 
 const Navigation = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -23,8 +24,7 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-2xl">🌾</span>
-          <span className="text-xl font-bold text-foreground">PlayFarm</span>
+          <img src={logo} alt="PlayFarm" className="h-12 w-auto" />
         </div>
 
         <div className="hidden md:flex items-center gap-8">
